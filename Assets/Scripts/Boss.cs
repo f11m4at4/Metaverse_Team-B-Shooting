@@ -35,6 +35,10 @@ public class Boss : MonoBehaviour
 
     void ShootTando()
     {
+        if (GameManager.Instance.m_State != GameManager.GameState.Playing)
+        {
+            return;
+        }
         GameObject bullet = Instantiate(bulletFactory);
         bullet.transform.position = transform.position;
     }
@@ -86,6 +90,11 @@ public class Boss : MonoBehaviour
     public int bulletCount = 10;
     void ShootBullet()
     {
+        if (GameManager.Instance.m_State != GameManager.GameState.Playing)
+        {
+            return;
+        }
+
         // 360 도로 발사하도록 하고 싶다.
         int deltaAngle = 360 / bulletCount;
         Vector3 dir = Vector3.up;
@@ -114,6 +123,10 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.m_State != GameManager.GameState.Playing)
+        {
+            return;
+        }
         // 좌우로 왔다 갔다 하고 싶다.
         // 1. 방향이 필요하다.
         float x = fspeed * Mathf.Sin(Time.time * freq);

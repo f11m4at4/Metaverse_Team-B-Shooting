@@ -73,8 +73,12 @@ public class EnemyShooter : MonoBehaviour
 
     void ShootBullet()
     {
+        if (GameManager.Instance.m_State != GameManager.GameState.Playing)
+        {
+            return;
+        }
         // 만약 타겟이 없으면 총알 안쏜다.
-        if(target == null)
+        if (target == null)
         {
             return;
         }
@@ -92,6 +96,10 @@ public class EnemyShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.m_State != GameManager.GameState.Playing)
+        {
+            return;
+        }
         // 타겟를 따라다니기
         // P = P0 + vt
         // 1. 방향이필요
